@@ -29,8 +29,14 @@ namespace CarrierJumpNotification
 
             List<EliteLogItem> logData = new List<EliteLogItem>();
 
-            var logLines = File.ReadLines(logPath);
-            foreach (var logItem in logLines)
+
+            var filestream = new System.IO.FileStream(logPath,
+                                         System.IO.FileMode.Open,
+                                         System.IO.FileAccess.Read,
+                                         System.IO.FileShare.ReadWrite);
+            var file = new System.IO.StreamReader(filestream, System.Text.Encoding.UTF8, true, 1024);
+            string logItem;
+            while ((logItem = file.ReadLine()) != null)
             {
                 EliteLogItem logObject;
                 try

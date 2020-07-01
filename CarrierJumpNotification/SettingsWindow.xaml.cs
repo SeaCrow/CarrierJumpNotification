@@ -23,6 +23,7 @@ namespace CarrierJumpNotification
         {
             InitializeComponent();
             txtPath.Text = GlobalSettings.EliteFolderPath;
+            chkCutSystemName.IsChecked = GlobalSettings.CutColSystem;
         }
 
         private void Browse_Click(object sender, RoutedEventArgs e)
@@ -44,6 +45,11 @@ namespace CarrierJumpNotification
         private void OK_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void chkCutSystemName_Click(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.CutColSystem = (bool)chkCutSystemName.IsChecked;
         }
     }
 }

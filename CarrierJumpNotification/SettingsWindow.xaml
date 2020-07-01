@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarrierJumpNotification"
         mc:Ignorable="d"
-        Title="SettingsWindow" Height="151.163" Width="426.744" ResizeMode="NoResize" Icon="notification_icon.png" WindowStartupLocation="CenterScreen">
+        Title="SettingsWindow" Height="226.997" Width="426.744" ResizeMode="NoResize" Icon="notification_icon.png" WindowStartupLocation="CenterScreen">
     <Grid Background="Black">
         <TextBox x:Name="txtPath" HorizontalAlignment="Left" Height="29" Margin="14,31,0,0" TextWrapping="NoWrap"  VerticalAlignment="Top" Width="390" BorderBrush="#FFFF6800" Foreground="#FFFF6800" Background="{x:Null}" SelectionBrush="#FFD7CD00" IsReadOnly="True"/>
         <Label Content="Location of E:D Journal file" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Foreground="#FFFF6800"/>
         <Button x:Name="Browse" Content="Browse" HorizontalAlignment="Left" Margin="249,65,0,0" VerticalAlignment="Top" Width="155" Foreground="Black" BorderBrush="#FFFF6800" Background="#FFFF6800" FontSize="16" Height="29" Click="Browse_Click"/>
-        <Button x:Name="OK" Content="OK" Margin="14,65,253,0" VerticalAlignment="Top" Foreground="Black" BorderBrush="#FFFF6800" Background="#FFFF6800" FontSize="14" Height="29" Click="OK_Click"/>
+        <Button x:Name="OK" Content="OK" Margin="134,149,133,0" VerticalAlignment="Top" Foreground="Black" BorderBrush="#FFFF6800" Background="#FFFF6800" FontSize="14" Height="29" Click="OK_Click"/>
+        <CheckBox x:Name="chkCutSystemName" Content="Auto remove &quot;COL XXX Sector&quot; from system name." HorizontalAlignment="Left" Margin="14,114,0,0" VerticalAlignment="Top" Background="#FFFF6800" BorderBrush="#FFFF6800" Foreground="#FFFF6800" Click="chkCutSystemName_Click"/>
     </Grid>
 </Window>

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using System.Text.RegularExpressions;
 
 using Microsoft.Win32;
 
@@ -28,6 +29,8 @@ namespace CarrierJumpNotification
         public MainWindow()
         {
             InitializeComponent();
+
+            creditsLabel.Content += "  v" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString().Substring(0, 4);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -87,9 +90,27 @@ namespace CarrierJumpNotification
 
             pattern = pattern.Replace("<fc_id>", txtCarrierID.Text);
 
-            pattern = pattern.Replace("<target_system>", txtTargetSystem.Text);
+            if (!GlobalSettings.CutColSystem)
+            {
+                pattern = pattern.Replace("<target_system>", txtTargetSystem.Text);
 
-            pattern = pattern.Replace("<current_system>", txtSourceSystem.Text);
+                pattern = pattern.Replace("<current_system>", txtSourceSystem.Text);
+            }else
+            {
+                Match Col = Regex.Match(txtTargetSystem.Text, @"COL\s\d{1,}\sSector\s");
+                if(Col.Success)
+                {
+                    string tmpSystem = txtTargetSystem.Text.Replace(Col.Value, "");
+                    pattern = pattern.Replace("<target_system>", tmpSystem);
+                }
+
+                Col = Regex.Match(txtSourceSystem.Text, @"COL\s\d{1,}\sSector\s");
+                if (Col.Success)
+                {
+                    string tmpSystem = txtSourceSystem.Text.Replace(Col.Value, "");
+                    pattern = pattern.Replace("<current_system>", tmpSystem);
+                }
+            }
 
             string toJump = string.Empty;
             string toLockdown = string.Empty;

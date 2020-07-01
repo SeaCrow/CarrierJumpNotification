@@ -14,7 +14,7 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <RichTextBox x:Name="NotificationResult" Margin="6,377,0,0" FontSize="14" Background="Black" Foreground="#FFFF6800" SelectionBrush="#FFD7CD00" BorderBrush="#FFFF6800" BorderThickness="2,2,2,1" IsReadOnly="True" Height="128" VerticalAlignment="Top" MouseDoubleClick="NotificationResult_MouseDoubleClick" HorizontalAlignment="Left" Width="453">
+        <RichTextBox x:Name="NotificationResult" Margin="6,377,0,0" FontSize="14" Background="Black" Foreground="#FFFF6800" SelectionBrush="#FFD7CD00" BorderBrush="#FFFF6800" BorderThickness="2,2,2,1" IsReadOnly="False"  Height="128" VerticalAlignment="Top" MouseDoubleClick="NotificationResult_MouseDoubleClick" HorizontalAlignment="Left" Width="453">
             <FlowDocument FontSize="20">
                 <Paragraph>
                     <Run Text="No fire zone entered, please stow your weapons."/>
@@ -35,6 +35,6 @@
         <Label Content="Jump from System" HorizontalAlignment="Left" Margin="10,146,0,0" VerticalAlignment="Top" Foreground="#FFFF6800"/>
         <TextBox x:Name="txtTargetSystem" HorizontalAlignment="Left" Height="29" Margin="246,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209" BorderBrush="#FFFF6800" Foreground="#FFFF6800" Background="{x:Null}" SelectionBrush="#FFD7CD00" FontSize="16"/>
         <Label Content="Jump to System" HorizontalAlignment="Left" Margin="242,146,0,0" VerticalAlignment="Top" Foreground="#FFFF6800"/>
-        <Label Content="CMDR Qaazar © 2020" HorizontalAlignment="Left" Margin="2,507,0,0" VerticalAlignment="Top" Foreground="#FFFF6800"/>
+        <Label x:Name="creditsLabel" Content="CMDR Qaazar © 2020" HorizontalAlignment="Left" Margin="2,507,0,0" VerticalAlignment="Top" Foreground="#FFFF6800"/>
     </Grid>
 </Window>

@@ -103,12 +103,20 @@ namespace CarrierJumpNotification
                     string tmpSystem = txtTargetSystem.Text.Replace(Col.Value, "");
                     pattern = pattern.Replace("<target_system>", tmpSystem);
                 }
+                else
+                {
+                    pattern = pattern.Replace("<target_system>", txtTargetSystem.Text);
+                }
 
                 Col = Regex.Match(txtSourceSystem.Text, @"Col\s\d{1,}\sSector\s");
                 if (Col.Success)
                 {
                     string tmpSystem = txtSourceSystem.Text.Replace(Col.Value, "");
                     pattern = pattern.Replace("<current_system>", tmpSystem);
+                }
+                else
+                {
+                    pattern = pattern.Replace("<current_system>", txtSourceSystem.Text);
                 }
             }
 

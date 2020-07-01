@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarrierJumpNotification"
         mc:Ignorable="d"
-        Title="Carrier Jump Notification Generator" Height="569.851" Width="479.045" Loaded="Window_Loaded" Focusable="False" ResizeMode="NoResize" Icon="notification_icon.png" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="Carrier Jump Notification Generator" Height="569.851" Width="479.045" Loaded="Window_Loaded" Focusable="False" ResizeMode="CanMinimize" Icon="notification_icon.png" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid Background="Black">
         <RichTextBox x:Name="NotificationPattern" Height="128" Margin="6,210,0,0" VerticalAlignment="Top" FontSize="14" Background="#FF441200" Foreground="#FFFF6800" SelectionBrush="#FFD7CD00" BorderBrush="#FFFF6800" BorderThickness="2,2,2,1" HorizontalAlignment="Left" Width="453">
             <FlowDocument FontSize="20">

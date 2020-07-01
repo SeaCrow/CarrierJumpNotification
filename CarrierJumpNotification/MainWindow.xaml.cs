@@ -97,14 +97,14 @@ namespace CarrierJumpNotification
                 pattern = pattern.Replace("<current_system>", txtSourceSystem.Text);
             }else
             {
-                Match Col = Regex.Match(txtTargetSystem.Text, @"COL\s\d{1,}\sSector\s");
+                Match Col = Regex.Match(txtTargetSystem.Text, @"Col\s\d{1,}\sSector\s");
                 if(Col.Success)
                 {
                     string tmpSystem = txtTargetSystem.Text.Replace(Col.Value, "");
                     pattern = pattern.Replace("<target_system>", tmpSystem);
                 }
 
-                Col = Regex.Match(txtSourceSystem.Text, @"COL\s\d{1,}\sSector\s");
+                Col = Regex.Match(txtSourceSystem.Text, @"Col\s\d{1,}\sSector\s");
                 if (Col.Success)
                 {
                     string tmpSystem = txtSourceSystem.Text.Replace(Col.Value, "");

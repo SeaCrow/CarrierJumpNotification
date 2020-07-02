@@ -24,6 +24,11 @@ namespace CarrierJumpNotification
             InitializeComponent();
             txtPath.Text = GlobalSettings.EliteFolderPath;
             chkCutSystemName.IsChecked = GlobalSettings.CutColSystem;
+
+            ChangeUIColor((Color)Application.Current.Resources["DynamicUIColor"]);
+
+            UiColorSlider.Maximum = ColorMischief.GradientSize - 1;
+            UiColorSlider.Value = GlobalSettings.UiColorIndex;
         }
 
         private void Browse_Click(object sender, RoutedEventArgs e)
@@ -34,7 +39,7 @@ namespace CarrierJumpNotification
 
                 System.Windows.Forms.DialogResult result = dialog.ShowDialog();
 
-                if(result == System.Windows.Forms.DialogResult.OK)
+                if (result == System.Windows.Forms.DialogResult.OK)
                 {
                     txtPath.Text = dialog.SelectedPath;
                     GlobalSettings.EliteFolderPath = dialog.SelectedPath;
@@ -50,6 +55,38 @@ namespace CarrierJumpNotification
         private void chkCutSystemName_Click(object sender, RoutedEventArgs e)
         {
             GlobalSettings.CutColSystem = (bool)chkCutSystemName.IsChecked;
+        }
+
+        public void ChangeUIColor(Color newColor)
+        {
+            labPath.Foreground = new SolidColorBrush(newColor);
+
+            txtPath.Foreground = new SolidColorBrush(newColor);
+            txtPath.BorderBrush = new SolidColorBrush(newColor);
+            txtPath.SelectionBrush = new SolidColorBrush(ColorMischief.SelectionColor(newColor));
+
+            btnBrowse.Background = new SolidColorBrush(newColor);
+            btnBrowse.BorderBrush = new SolidColorBrush(newColor);
+
+            chkCutSystemName.Background = new SolidColorBrush(newColor);
+            chkCutSystemName.BorderBrush = new SolidColorBrush(newColor);
+            chkCutSystemName.Foreground = new SolidColorBrush(newColor);
+
+            labUi.Foreground = new SolidColorBrush(newColor);
+
+            UiColorSlider.Foreground = new SolidColorBrush(newColor);
+
+            btnOK.Background = new SolidColorBrush(newColor);
+            btnOK.BorderBrush = new SolidColorBrush(newColor);
+        }
+
+        private void UiColorSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            GlobalSettings.UiColorIndex = (int)UiColorSlider.Value;
+
+            Application.Current.Resources["DynamicUIColor"] = ColorMischief.GetColorFromGradient(GlobalSettings.UiColorIndex);
+
+            ChangeUIColor(ColorMischief.GetColorFromGradient(GlobalSettings.UiColorIndex));
         }
     }
 }

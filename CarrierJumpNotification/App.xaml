@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:CarrierJumpNotification"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Color x:Key="DynamicUIColor" />
     </Application.Resources>
 </Application>

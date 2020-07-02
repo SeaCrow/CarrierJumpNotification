@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarrierJumpNotification"
         mc:Ignorable="d"
-        Title="Help" Height="439.824" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="notification_icon.png">
+        Title="Help" Height="494.824" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="notification_icon.png" Loaded="Window_Loaded">
     <Grid Background="Black">
         <Label Content="Buttons:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="#FFFF6800" FontSize="14" FontWeight="Bold"/>
         <Label Content="Notification keywords:" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" Foreground="#FFFF6800" FontSize="14" FontWeight="Bold"/>
-        <Button x:Name="OK" Content="OK" Margin="320,359,320,0" VerticalAlignment="Top" Foreground="Black" BorderBrush="#FFFF6800" Background="#FFFF6800" FontSize="14" Height="29" Click="OK_Click"/>
+        <Button x:Name="OK" Content="OK" Margin="320,415,320,0" VerticalAlignment="Top" Foreground="Black" BorderBrush="#FFFF6800" Background="#FFFF6800" FontSize="14" Height="29" Click="OK_Click"/>
         <Label Content="Pull Data - Attempts to pull data from Elite Dangerous logfile" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Foreground="#FFFF6800" FontSize="14"/>
         <Label Content=" to Find informations about active Fleet Carrier jump sequence." HorizontalAlignment="Left" Margin="387,39,0,0" VerticalAlignment="Top" Foreground="#FFFF6800" FontSize="14"/>
         <Label Content="Generate Notification - Generates text of notification based on filled fields and set up notification pattern." HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Foreground="#FFFF6800" FontSize="14"/>
@@ -20,6 +20,8 @@
         <Label Content="&lt;jump__time&gt;  -  Calculated minutes remaining untill hyperspace jump" HorizontalAlignment="Left" Margin="10,273,0,0" VerticalAlignment="Top" Foreground="#FFFF6800" FontSize="14"/>
         <Label Content="&lt;lockdown__time&gt;  -  Calculated minutes remaining untill pre-jump lockdown" HorizontalAlignment="Left" Margin="9,307,0,0" VerticalAlignment="Top" Foreground="#FFFF6800" FontSize="14"/>
         <Label Content="( WARNING : Currently automated pull can only find Carrier location if ship was docked to it. )" HorizontalAlignment="Left" Margin="9,239,0,0" VerticalAlignment="Top" Foreground="#FFFF6800" FontSize="14"/>
+        <Label Content="&lt;jump__hour&gt;  -  Calculated time of hyperspace jump" HorizontalAlignment="Left" Margin="10,341,0,0" VerticalAlignment="Top" Foreground="#FFFF6800" FontSize="14"/>
+        <Label Content="&lt;lockdown__hour&gt;  -  Calculated time of pre-jump lockdown" HorizontalAlignment="Left" Margin="10,375,0,0" VerticalAlignment="Top" Foreground="#FFFF6800" FontSize="14"/>
 
     </Grid>
 </Window>

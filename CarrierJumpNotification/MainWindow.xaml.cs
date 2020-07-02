@@ -31,6 +31,10 @@ namespace CarrierJumpNotification
             InitializeComponent();
 
             creditsLabel.Content += "  v" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString().Substring(0, 4);
+
+            GlobalSettings.InitFromFile(configPath);
+
+            Application.Current.Resources["DynamicUIColor"] = ColorMischief.GetColorFromGradient(GlobalSettings.UiColorIndex);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -41,19 +45,12 @@ namespace CarrierJumpNotification
 
             ExampleData();
 
-            if (File.Exists(configPath))
-            {
-                GlobalSettings.InitFromFile(configPath);
-            }
-            else
-            {
-                GlobalSettings.InitDefault();
-            }
-
             NotificationPattern.Document.Blocks.Clear();
             NotificationPattern.Document.Blocks.Add(new Paragraph(new Run(GlobalSettings.NotificationPattern)));
 
             GenerateNotification();
+
+            ChangeUIColor((Color)Application.Current.Resources["DynamicUIColor"]);
         }
 
         private void NotificationResult_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -95,10 +92,11 @@ namespace CarrierJumpNotification
                 pattern = pattern.Replace("<target_system>", txtTargetSystem.Text);
 
                 pattern = pattern.Replace("<current_system>", txtSourceSystem.Text);
-            }else
+            }
+            else
             {
                 Match Col = Regex.Match(txtTargetSystem.Text, @"Col\s\d{1,}\sSector\s");
-                if(Col.Success)
+                if (Col.Success)
                 {
                     string tmpSystem = txtTargetSystem.Text.Replace(Col.Value, "");
                     pattern = pattern.Replace("<target_system>", tmpSystem);
@@ -123,12 +121,14 @@ namespace CarrierJumpNotification
             string toJump = string.Empty;
             string toLockdown = string.Empty;
 
+            string jumpTime = string.Empty;
+            string lockdownTime = string.Empty;
 
             DateTime StartTime;
 
             if (DateTime.TryParse(txtStartTime.Text, out StartTime))
             {
-                DateTime JumpTime = StartTime.AddMinutes(15);
+                DateTime JumpTime = StartTime.AddMinutes(16).AddSeconds(10);
                 DateTime LockdownTime = JumpTime.AddSeconds(-200);
 
                 int jumpMinutes = (int)(JumpTime - DateTime.UtcNow).TotalMinutes;
@@ -142,14 +142,23 @@ namespace CarrierJumpNotification
 
                 toJump = jumpMinutes.ToString();
                 toLockdown = lockdownMinutes.ToString();
+
+                jumpTime = JumpTime.ToString("hh:mm");
+                lockdownTime = LockdownTime.ToString("hh:mm");
             }
 
             pattern = pattern.Replace("<jump_time>", toJump);
 
             pattern = pattern.Replace("<lockdown_time>", toLockdown);
 
+            pattern = pattern.Replace("<jump_hour>", jumpTime);
+
+            pattern = pattern.Replace("<lockdown_hour>", lockdownTime);
+
             NotificationResult.Document.Blocks.Clear();
             NotificationResult.Document.Blocks.Add(new Paragraph(new Run(pattern)));
+
+            Clipboard.SetText(pattern);
 
         }
 
@@ -166,6 +175,11 @@ namespace CarrierJumpNotification
         {
             SettingsWindow config = new SettingsWindow();
             config.ShowDialog();
+
+            Color UiColor = ColorMischief.GetColorFromGradient(GlobalSettings.UiColorIndex);
+            Application.Current.Resources["DynamicUIColor"] = UiColor;
+
+            ChangeUIColor(UiColor);
         }
 
         private void PullData_Click(object sender, RoutedEventArgs e)
@@ -176,7 +190,7 @@ namespace CarrierJumpNotification
             var directory = new DirectoryInfo(GlobalSettings.EliteFolderPath);
             var filename = (from f in directory.GetFiles("*.log")
                             orderby f.LastWriteTime descending
-                            select f 
+                            select f
                             ).First().FullName;
 
             CarrierJumpData latestJump = EliteLogParser.PullFromLog(filename);
@@ -188,13 +202,56 @@ namespace CarrierJumpNotification
             txtCarrierID.Text = latestJump.Callsign;
             txtCarrierName.Text = latestJump.Name;
             txtTargetSystem.Text = latestJump.TargetSystem;
-            if(latestJump.CurrentSystem != null && latestJump.CurrentSystem != string.Empty)
+            if (latestJump.CurrentSystem != null && latestJump.CurrentSystem != string.Empty)
             {
                 txtSourceSystem.Text = latestJump.CurrentSystem;
-                
+
             }
 
             GenerateNotification();
+        }
+
+        private void ChangeUIColor(Color newColor)
+        {
+            SolidColorBrush newBrush = new SolidColorBrush(newColor);
+
+            foreach(var ctr in this.GetChildren())
+            {
+                Label lab = ctr as Label;
+                if(lab != null)
+                {
+                    lab.Foreground = newBrush;
+                    continue;
+                }
+
+                TextBox txt = ctr as TextBox;
+                if (txt != null)
+                {
+                    txt.Foreground = newBrush;
+                    txt.BorderBrush = newBrush;
+                    txt.SelectionBrush = new SolidColorBrush(ColorMischief.SelectionColor(newColor));
+                    continue;
+                }
+
+                Button btn = ctr as Button;
+                if (btn != null)
+                {
+                    btn.Background = newBrush;
+                    btn.BorderBrush = newBrush;
+                    continue;
+                }
+
+                RichTextBox rtf = ctr as RichTextBox;
+                if (rtf != null)
+                {
+                    rtf.Foreground = newBrush;
+                    rtf.BorderBrush = newBrush;
+                    rtf.SelectionBrush = new SolidColorBrush(ColorMischief.SelectionColor(newColor));
+                    continue;
+                }
+
+                NotificationPattern.Background = new SolidColorBrush(ColorMischief.BackgroundColor(newColor));
+            }
         }
     }
 }

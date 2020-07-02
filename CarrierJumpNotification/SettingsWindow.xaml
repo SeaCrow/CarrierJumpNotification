@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarrierJumpNotification"
         mc:Ignorable="d"
-        Title="SettingsWindow" Height="270.997" Width="426.744" ResizeMode="NoResize" Icon="notification_icon.png" WindowStartupLocation="CenterScreen">
-    <Grid Background="Black">
+        Title="SettingsWindow" Height="286.997" Width="426.744" ResizeMode="NoResize" Icon="notification_icon.png" WindowStartupLocation="CenterScreen">
+    <Grid Background="Black" Margin="0,0,0,0
+          ">
         <TextBox x:Name="txtPath" HorizontalAlignment="Left" Height="29" Margin="14,31,0,0" TextWrapping="NoWrap"  VerticalAlignment="Top" Width="390" BorderBrush="#FFFF6800" Foreground="#FFFF6800" Background="{x:Null}" SelectionBrush="#FFD7CD00" IsReadOnly="True"/>
         <Label x:Name="labPath" Content="Location of E:D Journal file" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Foreground="#FFFF6800"/>
         <Button x:Name="btnBrowse" Content="Browse" HorizontalAlignment="Left" Margin="249,65,0,0" VerticalAlignment="Top" Width="155" Foreground="Black" BorderBrush="#FFFF6800" Background="#FFFF6800" FontSize="16" Height="29" Click="Browse_Click"/>
-        <Button x:Name="btnOK" Content="OK" Margin="134,187,133,0" VerticalAlignment="Top" Foreground="Black" BorderBrush="#FFFF6800" Background="#FFFF6800" FontSize="14" Height="29" Click="OK_Click"/>
+        <Button x:Name="btnOK" Content="OK" Margin="134,206,133,0" VerticalAlignment="Top" Foreground="Black" BorderBrush="#FFFF6800" Background="#FFFF6800" FontSize="14" Height="29" Click="OK_Click"/>
         <CheckBox x:Name="chkCutSystemName" Content="Auto remove &quot;COL XXX Sector&quot; from system name." HorizontalAlignment="Left" Margin="14,114,0,0" VerticalAlignment="Top" Background="#FFFF6800" BorderBrush="#FFFF6800" Foreground="#FFFF6800" Click="chkCutSystemName_Click"/>
-        <Slider x:Name="UiColorSlider" HorizontalAlignment="Left" Margin="72,136,0,0" VerticalAlignment="Top" Width="332" Foreground="#FFFF6700" Style="{DynamicResource SliderStyle1}" SmallChange="0" TickPlacement="BottomRight" ValueChanged="UiColorSlider_ValueChanged" IsSnapToTickEnabled="True">
+        <Slider x:Name="UiColorSlider" HorizontalAlignment="Left" Margin="68,159,0,0" VerticalAlignment="Top" Width="332" Foreground="#FFFF6700" Style="{DynamicResource SliderStyle1}" SmallChange="0" TickPlacement="BottomRight" ValueChanged="UiColorSlider_ValueChanged" IsSnapToTickEnabled="True">
             <Slider.Resources>
                 <SolidColorBrush x:Key="SliderThumb.Static.Foreground" Color="{DynamicResource DynamicUIColor}"/>
                 <SolidColorBrush x:Key="SliderThumb.MouseOver.Background" Color="{DynamicResource DynamicUIColor}"/>
@@ -268,6 +269,7 @@
                 </Style>
             </Slider.Resources>
         </Slider>
-        <Label x:Name="labUi" Content="UI Color" HorizontalAlignment="Left" Margin="14,134,0,0" VerticalAlignment="Top" Foreground="#FFFF6800"/>
+        <Label x:Name="labUi" Content="UI Color" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top" Foreground="#FFFF6800"/>
+        <CheckBox x:Name="chkExtendedSearch" Content="Use more extensive search for carrier current system" HorizontalAlignment="Left" Margin="14,137,0,0" VerticalAlignment="Top" Background="#FFFF6800" BorderBrush="#FFFF6800" Foreground="#FFFF6800" Click="chkExtendedSearch_Click"/>
     </Grid>
 </Window>

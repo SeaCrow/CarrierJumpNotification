@@ -13,6 +13,7 @@ namespace CarrierJumpNotification
         public static string EliteFolderPath { get; set; }
         public static string NotificationPattern { get; set; }
         public static bool CutColSystem { get; set; }
+        public static bool ExtendedSearch { get; set; }
         public static int UiColorIndex = 0;
 
         public static void InitDefault()
@@ -20,6 +21,7 @@ namespace CarrierJumpNotification
             NotificationPattern = "<fc_name> (<fc_id>) is departing to <target_system> from <current_system>. Lockdown in <lockdown_time> minutes.";
             EliteFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Saved Games\Frontier Developments\Elite Dangerous";
             CutColSystem = true;
+            ExtendedSearch = true;
 
             if (!Directory.Exists(EliteFolderPath))
                 EliteFolderPath = string.Empty;
@@ -41,6 +43,7 @@ namespace CarrierJumpNotification
                 EliteFolderPath = newConfig.EliteFolderPath;
                 NotificationPattern = newConfig.NotificationPattern;
                 CutColSystem = newConfig.CutColSystem;
+                ExtendedSearch = newConfig.ExtendedSearch;
                 UiColorIndex = newConfig.UiColorIndex;
             }
             catch 
@@ -55,6 +58,7 @@ namespace CarrierJumpNotification
             toSave.EliteFolderPath = EliteFolderPath;
             toSave.NotificationPattern = NotificationPattern;
             toSave.CutColSystem = CutColSystem;
+            toSave.ExtendedSearch = ExtendedSearch;
             toSave.UiColorIndex = UiColorIndex;
 
             try
@@ -70,6 +74,7 @@ namespace CarrierJumpNotification
             public string EliteFolderPath { get; set; }
             public string NotificationPattern { get; set; }
             public bool CutColSystem { get; set; }
+            public bool ExtendedSearch { get; set; }
             public int UiColorIndex { get; set; }
         }
     }

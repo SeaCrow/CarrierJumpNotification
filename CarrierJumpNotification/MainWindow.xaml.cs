@@ -193,7 +193,7 @@ namespace CarrierJumpNotification
                             select f
                             ).First().FullName;
 
-            CarrierJumpData latestJump = EliteLogParser.PullFromLog(filename);
+            CarrierJumpData latestJump = EliteLogParser.PullFromLog(filename,GlobalSettings.ExtendedSearch);
 
             if (latestJump == null)
                 return;

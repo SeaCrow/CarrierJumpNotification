@@ -87,11 +87,11 @@ namespace CarrierJumpNotification
 
         private void UiColorSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            GlobalSettings.UiColorIndex = (int)UiColorSlider.Value;
+            GlobalSettings.UiColorIndex = UiColorSlider.Value;
 
-            Application.Current.Resources["DynamicUIColor"] = ColorMischief.GetColorFromGradient(GlobalSettings.UiColorIndex);
+            Application.Current.Resources["DynamicUIColor"] = ColorMischief.GetSmoothColor(GlobalSettings.UiColorIndex);
 
-            ChangeUIColor(ColorMischief.GetColorFromGradient(GlobalSettings.UiColorIndex));
+            ChangeUIColor(ColorMischief.GetSmoothColor(GlobalSettings.UiColorIndex));
         }
 
         private void chkExtendedSearch_Click(object sender, RoutedEventArgs e)

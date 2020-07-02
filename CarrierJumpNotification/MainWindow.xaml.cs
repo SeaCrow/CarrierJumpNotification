@@ -30,11 +30,19 @@ namespace CarrierJumpNotification
         {
             InitializeComponent();
 
-            creditsLabel.Content += "  v" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString().Substring(0, 4);
+            string[] versionNo = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString().Split('.');
+            string ver = "  v" + versionNo[0] + '.' + versionNo[1];
+            if (versionNo[2] != "0")
+                ver += '.' + versionNo[2];
+
+            if (versionNo[3] != "0")
+                ver += '.' + versionNo[2];
+
+            creditsLabel.Content += ver;
 
             GlobalSettings.InitFromFile(configPath);
 
-            Application.Current.Resources["DynamicUIColor"] = ColorMischief.GetColorFromGradient(GlobalSettings.UiColorIndex);
+            Application.Current.Resources["DynamicUIColor"] = ColorMischief.GetSmoothColor(GlobalSettings.UiColorIndex);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -176,7 +184,7 @@ namespace CarrierJumpNotification
             SettingsWindow config = new SettingsWindow();
             config.ShowDialog();
 
-            Color UiColor = ColorMischief.GetColorFromGradient(GlobalSettings.UiColorIndex);
+            Color UiColor = ColorMischief.GetSmoothColor(GlobalSettings.UiColorIndex);
             Application.Current.Resources["DynamicUIColor"] = UiColor;
 
             ChangeUIColor(UiColor);
@@ -193,7 +201,7 @@ namespace CarrierJumpNotification
                             select f
                             ).First().FullName;
 
-            CarrierJumpData latestJump = EliteLogParser.PullFromLog(filename,GlobalSettings.ExtendedSearch);
+            CarrierJumpData latestJump = EliteLogParser.PullFromLog(filename, GlobalSettings.ExtendedSearch);
 
             if (latestJump == null)
                 return;
@@ -215,10 +223,10 @@ namespace CarrierJumpNotification
         {
             SolidColorBrush newBrush = new SolidColorBrush(newColor);
 
-            foreach(var ctr in this.GetChildren())
+            foreach (var ctr in this.GetChildren())
             {
                 Label lab = ctr as Label;
-                if(lab != null)
+                if (lab != null)
                 {
                     lab.Foreground = newBrush;
                     continue;

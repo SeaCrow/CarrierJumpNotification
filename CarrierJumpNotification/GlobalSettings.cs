@@ -14,7 +14,7 @@ namespace CarrierJumpNotification
         public static string NotificationPattern { get; set; }
         public static bool CutColSystem { get; set; }
         public static bool ExtendedSearch { get; set; }
-        public static int UiColorIndex = 0;
+        public static double UiColorIndex = 0;
 
         public static void InitDefault()
         {
@@ -75,7 +75,7 @@ namespace CarrierJumpNotification
             public string NotificationPattern { get; set; }
             public bool CutColSystem { get; set; }
             public bool ExtendedSearch { get; set; }
-            public int UiColorIndex { get; set; }
+            public double UiColorIndex { get; set; }
         }
     }
 }

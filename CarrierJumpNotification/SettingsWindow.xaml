@@ -13,7 +13,8 @@
         <Button x:Name="btnBrowse" Content="Browse" HorizontalAlignment="Left" Margin="249,65,0,0" VerticalAlignment="Top" Width="155" Foreground="Black" BorderBrush="#FFFF6800" Background="#FFFF6800" FontSize="16" Height="29" Click="Browse_Click"/>
         <Button x:Name="btnOK" Content="OK" Margin="134,206,133,0" VerticalAlignment="Top" Foreground="Black" BorderBrush="#FFFF6800" Background="#FFFF6800" FontSize="14" Height="29" Click="OK_Click"/>
         <CheckBox x:Name="chkCutSystemName" Content="Auto remove &quot;COL XXX Sector&quot; from system name." HorizontalAlignment="Left" Margin="14,114,0,0" VerticalAlignment="Top" Background="#FFFF6800" BorderBrush="#FFFF6800" Foreground="#FFFF6800" Click="chkCutSystemName_Click"/>
-        <Slider x:Name="UiColorSlider" HorizontalAlignment="Left" Margin="68,159,0,0" VerticalAlignment="Top" Width="332" Foreground="#FFFF6700" Style="{DynamicResource SliderStyle1}" SmallChange="0" TickPlacement="BottomRight" ValueChanged="UiColorSlider_ValueChanged" IsSnapToTickEnabled="True">
+        <Slider x:Name="UiColorSlider" HorizontalAlignment="Left" Margin="68,159,0,0" VerticalAlignment="Top" Width="332" Foreground="#FFFF6700" Style="{DynamicResource SliderStyle1}" TickPlacement="BottomRight" ValueChanged="UiColorSlider_ValueChanged"
+                >
             <Slider.Resources>
                 <SolidColorBrush x:Key="SliderThumb.Static.Foreground" Color="{DynamicResource DynamicUIColor}"/>
                 <SolidColorBrush x:Key="SliderThumb.MouseOver.Background" Color="{DynamicResource DynamicUIColor}"/>

@@ -39,6 +39,32 @@ namespace CarrierJumpNotification
             return Gradient[index];
         }
 
+        public static Color GetSmoothColor(double colorCode)
+        {
+            if ((colorCode % 1) == 0)
+                return GetColorFromGradient((int)colorCode);
+
+            int totalValue = (int)colorCode;
+
+            double fractalValue = colorCode - totalValue;
+
+            Color one = GetColorFromGradient(totalValue);
+            Color two = GetColorFromGradient(totalValue + 1);
+
+            Color result = Color.FromRgb(
+                CalculateWeightedAverage(one.R,two.R,fractalValue),
+                CalculateWeightedAverage(one.G, two.G, fractalValue),
+                CalculateWeightedAverage(one.B, two.B, fractalValue)
+                );
+
+            return result;
+        }
+
+        private static byte CalculateWeightedAverage(byte one, byte two, double weight)
+        {
+            return (byte)((one * (1 - weight)) + (two * weight));
+        }
+
         public static int GradientSize { get { return Gradient.Length; } }
 
         public static Color SelectionColor(Color baseColor)

@@ -24,3 +24,6 @@ In that second case, click on settings and set correct path to the Elite Dangero
 Fields above notification patterns are editable, if you want notification with some different text then system name (for example "Sell Area", "Col Mines"), just edit them and generate new notification.
 
 Set notification pattern to whatever you want, full list of keywords is in Help. Just mind length for some bizzare reason in-game chat have paste character limit, too long notification wont paste correctly, so you might need to copy it in parts ( or shorten it).
+
+### Buy me a beer
+If you find tool useful and wish to buy me a beer, You can here: [Ko-Fi](https://ko-fi.com/qaazar#paymentModal)

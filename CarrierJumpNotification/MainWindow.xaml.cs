@@ -77,6 +77,8 @@ namespace CarrierJumpNotification
         {
             string pattern = new TextRange(NotificationPattern.Document.ContentStart, NotificationPattern.Document.ContentEnd).Text;
 
+            pattern = pattern.TrimEnd(new char[] { '\r', '\n' });
+
             GlobalSettings.NotificationPattern = pattern;
 
             GlobalSettings.SaveSettings(configPath);
@@ -162,6 +164,8 @@ namespace CarrierJumpNotification
             pattern = pattern.Replace("<jump_hour>", jumpTime);
 
             pattern = pattern.Replace("<lockdown_hour>", lockdownTime);
+
+            pattern = pattern.TrimEnd(new char[] { '\r', '\n' });
 
             NotificationResult.Document.Blocks.Clear();
             NotificationResult.Document.Blocks.Add(new Paragraph(new Run(pattern)));

@@ -174,7 +174,8 @@ namespace CarrierJumpNotification
                 }
             }
 
-            carrierSystemHistory.RemoveAt(carrierSystemHistory.Count - 1);
+            if (carrierSystemHistory.Count > 1)
+                carrierSystemHistory.RemoveAt(carrierSystemHistory.Count - 1);
 
             if (carrierSystemHistory.Count > 0)
                 return carrierSystemHistory.Last();

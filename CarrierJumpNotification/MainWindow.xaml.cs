@@ -138,7 +138,7 @@ namespace CarrierJumpNotification
 
             if (DateTime.TryParse(txtStartTime.Text, out StartTime))
             {
-                DateTime JumpTime = StartTime.AddMinutes(16).AddSeconds(10);
+                DateTime JumpTime = StartTime.AddMinutes(15).AddSeconds(30);
                 DateTime LockdownTime = JumpTime.AddSeconds(-200);
 
                 int jumpMinutes = (int)(JumpTime - DateTime.UtcNow).TotalMinutes;

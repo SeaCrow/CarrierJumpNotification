@@ -25,6 +25,7 @@ namespace CarrierJumpNotification
             txtPath.Text = GlobalSettings.EliteFolderPath;
             chkCutSystemName.IsChecked = GlobalSettings.CutColSystem;
             chkExtendedSearch.IsChecked = GlobalSettings.ExtendedSearch;
+            chkAutoClipboard.IsChecked = GlobalSettings.AutoClipboard;
 
             ChangeUIColor((Color)Application.Current.Resources["DynamicUIColor"]);
 
@@ -77,6 +78,10 @@ namespace CarrierJumpNotification
             chkExtendedSearch.BorderBrush = new SolidColorBrush(newColor);
             chkExtendedSearch.Foreground = new SolidColorBrush(newColor);
 
+            chkAutoClipboard.Background = new SolidColorBrush(newColor);
+            chkAutoClipboard.BorderBrush = new SolidColorBrush(newColor);
+            chkAutoClipboard.Foreground = new SolidColorBrush(newColor);
+
             labUi.Foreground = new SolidColorBrush(newColor);
 
             UiColorSlider.Foreground = new SolidColorBrush(newColor);
@@ -97,6 +102,11 @@ namespace CarrierJumpNotification
         private void chkExtendedSearch_Click(object sender, RoutedEventArgs e)
         {
             GlobalSettings.ExtendedSearch = (bool)chkExtendedSearch.IsChecked;
+        }
+
+        private void chkAutoClipboard_Click(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.AutoClipboard = (bool)chkAutoClipboard.IsChecked;
         }
     }
 }

@@ -12,8 +12,9 @@ namespace CarrierJumpNotification
     {
         public static string EliteFolderPath { get; set; }
         public static string NotificationPattern { get; set; }
-        public static bool CutColSystem { get; set; }
-        public static bool ExtendedSearch { get; set; }
+        public static bool CutColSystem = true;
+        public static bool ExtendedSearch = true;
+        public static bool AutoClipboard = true;
         public static double UiColorIndex = 0;
 
         public static void InitDefault()
@@ -22,6 +23,7 @@ namespace CarrierJumpNotification
             EliteFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Saved Games\Frontier Developments\Elite Dangerous";
             CutColSystem = true;
             ExtendedSearch = true;
+            AutoClipboard = true;
 
             if (!Directory.Exists(EliteFolderPath))
                 EliteFolderPath = string.Empty;
@@ -45,6 +47,7 @@ namespace CarrierJumpNotification
                 CutColSystem = newConfig.CutColSystem;
                 ExtendedSearch = newConfig.ExtendedSearch;
                 UiColorIndex = newConfig.UiColorIndex;
+                AutoClipboard = newConfig.AutoClipboard;
             }
             catch 
             {
@@ -60,6 +63,7 @@ namespace CarrierJumpNotification
             toSave.CutColSystem = CutColSystem;
             toSave.ExtendedSearch = ExtendedSearch;
             toSave.UiColorIndex = UiColorIndex;
+            toSave.AutoClipboard = AutoClipboard;
 
             try
             {
@@ -75,6 +79,7 @@ namespace CarrierJumpNotification
             public string NotificationPattern { get; set; }
             public bool CutColSystem { get; set; }
             public bool ExtendedSearch { get; set; }
+            public bool AutoClipboard { get; set; }
             public double UiColorIndex { get; set; }
         }
     }

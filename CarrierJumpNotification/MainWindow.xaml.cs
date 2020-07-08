@@ -170,8 +170,14 @@ namespace CarrierJumpNotification
             NotificationResult.Document.Blocks.Clear();
             NotificationResult.Document.Blocks.Add(new Paragraph(new Run(pattern)));
 
-            Clipboard.SetText(pattern);
-
+            if (GlobalSettings.AutoClipboard)
+            {
+                try
+                {
+                    Clipboard.SetText(pattern);
+                }
+                catch { }
+            }
         }
 
         private void ExampleData()
